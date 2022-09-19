@@ -1,0 +1,623 @@
+<?php 
+include_once("connection.php");
+if (isset($_POST['update'])) {
+/*echo "<pre>";
+print_r($_POST);
+exit;*/
+
+$name = $_POST['name'];
+$id = $_POST['id'];
+$sql = "UPDATE `employee` SET `name`='$name' WHERE `id`='$emp_id'"; 
+$result = $conn->query($sql); 
+if ($result == TRUE) {
+echo "Record updated successfully.";
+header("Location: show.php");
+}else{
+echo "Error:" . $sql . "<br>" . $conn->error;
+}
+} 
+if (isset($_GET['id'])) {
+$emp_id = $_GET['id']; 
+$sql = "SELECT * FROM `employee` WHERE `id`='$emp_id'";
+$result = $conn->query($sql); 
+if ($result->num_rows > 0) {        
+while ($row = $result->fetch_assoc()) {
+$name = $row['name'];
+$id = $row['id'];
+} 
+?>
+<html>
+<head></head></head>
+<body>
+<h2>Employee Update Form</h2>
+<form action="" method="post">
+<fieldset style="width:50%;">
+<legend>Please Update your data</legend>
+Name :<br>
+<input type="text" name="name" value="<?php echo $name; ?>"><br><br>
+<input type="hidden" name="id" value="<?php echo $id; ?>">
+<input type="submit" value="Update" name="update">
+</fieldset>
+</form> 
+</body>
+</html> 
+<?php
+} else{ 
+header('Location: view.php');
+} 
+}
+?>
+
+
+
+<!--kjvfv-->
+<?php 
+
+
+
+include_once("connection.php");
+
+if (isset($_POST['update'])) {
+
+/*echo "<pre>";
+print_r($_POST);
+exit;
+*/
+$name = $_POST['name'];
+$id = $_POST['id'];
+$age = $_POST['age'];
+$experience = $_POST['experience'];
+$jdate = $_POST['jdate'];
+$jdate = "";
+
+$address = $_POST['address']; 
+$address="";
+$sql = "UPDATE `employee` SET `name`='$name',`age`='$age',`experience`='$experience',`joindate`='$jdate',`location`='$address' WHERE `id`='$emp_id'"; 
+$result = $conn->query($sql); 
+if ($result == TRUE) {
+echo "Record updated successfully.";
+header("Location: show.php");
+}else{
+echo "Error:" . $sql . "<br>" . $conn->error;
+}
+} 
+if (isset($_GET['id'])) {
+$emp_id = $_GET['id']; 
+$sql = "SELECT * FROM `employee` WHERE `id`='$emp_id'";
+$result = $conn->query($sql); 
+$jdate  = "";
+
+if ($result->num_rows > 0) {        
+while ($row = $result->fetch_assoc()) {
+$name = $row['name'];
+$age= $row['age'];
+$experience = $row['experience'];
+$jdate  = $row['jdate']="";
+$address = $row['address'] ="";
+$id = $row['id'];
+} 
+?>
+<html>
+<head></head></head>
+<body>
+<h2>Employee Update Form</h2>
+<form action="" method="post">
+<fieldset style="width:50%;">
+<legend>Please Update your data</legend>
+Name :<br>
+<input type="text" name="name" value="<?php echo $name; ?>"><br><br>
+<input type="hidden" name="id" value="<?php echo $id; ?>">
+<br>
+Age :<br>
+<input type="number" name="age" value="<?php echo $age; ?>"><br><br>
+Experience :<br>
+<input type="number" name="experience" value="<?php echo $experience; ?>"><br><br>
+Join Date :<br>
+<input type="date" name="jdate" value="<?php echo $jdate; ?>"><br><br>
+Address:<br>
+<input type="text" name="address" value="<?php echo $address; ?>"><br><br>
+<input type="submit" value="Update" name="update">
+</fieldset>
+</form> 
+</body>
+</html> 
+<?php
+} else{ 
+header('Location: view.php');
+} 
+}
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	$('#name').blur(function(){
+		var name = $('#name').val();
+		if(name == ''){
+			$('.nameerror').html('Name is required');
+		}else{
+			$('.nameerror').html('');
+		}
+		
+	});
+	// $("input[name='name']").blur(function(){
+	// 	var name = $('#name').val();
+	// 	if(name == ''){
+	// 		$('.name-class').append('<p class="nameerror" style="color:red;">Name is required</p>');
+	// 	}else{
+	// 		$('.name-class p').remove();
+	// 	}
+		
+	// });
+
+    	//<div class="name-class">
+	//<input type="text" name="name" id="name" required>
+	//</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<script>
+	// $('#name').blur(function(){
+	// 	var name = $('#name').val();
+	// 	if(name == ''){
+	// 		$('.nameerror').html('Name is required');
+	// 	}else{
+	// 		$('.nameerror').html('');
+	// 	}		
+	// });
+	// $('#age').blur(function(){
+	// 	var age = $('#age').val();
+	// 	if(age == ''){
+	// 		$('.ageerror').html('Age is required');
+	// 	}else{
+	// 		$('.ageerror').html('');
+	// 	}	
+	// });
+	// $('#exp').blur(function(){
+	// 	var expe = $('#exp').val();
+	// 	if(expe == ''){
+	// 		$('.experror').html('Experience is required');
+	// 	}else{
+	// 		$('.experror').html('');
+	// 	}
+	// });
+	// $('#jdate').blur(function(){
+	// 	var join = $('#jdate').val();
+	// 	if(join == ''){
+	// 		$('.jderror').html('Joining date is required');
+	// 	}else{
+	// 		$('.jderror').html('');
+	// 	}
+	// });
+	// $('#pic').blur(function(){
+	// 	var img = $('#pic').val();
+	// 	if(img == ''){
+	// 		$('.picerror').html('Profile is required');
+	// 	}else{
+	// 		$('.picerror').html('');
+	// 	}
+	// });
+	// $('#add').blur(function(){
+	// 	var addre = $('#add').val();
+	// 	if(addre == ''){
+	// 		$('.aderror').html('Experience is required');
+	// 	}else{
+	// 		$('.aderror').html('');
+	// 	}
+	// });
+
+	// // $("input[name='name']").blur(function(){
+	// // 	var name = $('#name').val();
+	// // 	if(name == ''){
+	// // 		$('.nameerror').html('Name is required');
+	// // 	}else{
+	// // 		$('.nameerror').html('');
+	// // 	}
+		
+	// // });
+
+</script>
+
+<alert show>
+<script>
+    $('.onlciks').click(function(){        
+        var data = $(this).html();
+        alert(data);
+	});
+</script>
+</alert>
+
+
+
+
+
+<--------------------------------------------------------show .php----------------------------------------------------------------------------> 
+<?php
+include_once("connection.php");
+
+$sql="select * from employee";
+$res=mysqli_query($conn,$sql);
+if(mysqli_num_rows($res)>0)
+{
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<table border=2 width="100%" style="margin-top: 20px;">
+<caption><h1><u style="color:blue;">Empolyee Records</u></h1></caption>
+<tr style="color:red;">
+<th >Sr. No.</th>
+<th>Name</th>
+<th>AGE</th>
+<th>EXPERIENCE</th>
+<th>DEPARTMENT</th>
+<th>JOINING DATE</th>
+<th>PROFILE PIC</th>
+<th>ADDRESS</th>
+<th>COUNTRY</th>
+<th>EDIT</th>
+<th>DELETE</th>
+</tr>
+<?php
+while($row=mysqli_fetch_assoc($res))
+
+{
+?>
+<tr>
+<td><?php echo $row['id']; ?></td>
+<td><?php echo $row['name']; ?></td>
+<td><?php echo $row['age']; ?></td>
+<td><?php echo $row['experience']; ?></td>
+<td><?php echo $row['department']; ?></td>
+<td><?php echo $row['joindate']; ?></td>
+<td><img src="Uploads/<?php  echo $row['image'];?>" width="80" height="80"></td>
+<td><?php echo $row['location']; ?></td>
+<td class="onlciks"><?php echo $row['country']; ?></td>
+<td ><a href="edit.php?id=<?php echo $row['id']; ?>" class="btn">Edit</a></td>
+<th><a href="delete.php?id=<?php echo $row['id']; ?>" class="btn">Delete</a></th>
+</tr>
+<?php } ?>
+</table>
+<script>
+    $('.onlciks').click(function(){        
+        var data = $(this).html();
+        alert(data);
+	});
+</script>
+<?php
+}
+else
+{
+    echo "<h1>No Record Found</h1>";
+}
+mysqli_close($conn);
+?>
+<--------------------------------------------------------show .php----------------------------------------------------------------------------> 
+
+
+<--------------------------------------------------------show .php   with model---------------------------------------------------------------------------->
+<?php
+include_once("connection.php");
+
+$sql="select * from employee";
+$res=mysqli_query($conn,$sql);
+if(mysqli_num_rows($res)>0)
+{
+?>
+<html><head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <p>Some text in the modal.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      <!-- Modal content-->
+    </div>
+  </div>
+<table border=2 width="100%" style="margin-top: 20px;">
+<h1><u style="color:blue;">Empolyee Records</u></h1>
+<tr style="color:red;">
+    <th >Sr. No.</th>
+    <th>Name</th>
+    <th>AGE</th>
+    <th>EXPERIENCE</th>
+    <th>DEPARTMENT</th>
+    <th>JOINING DATE</th>
+    <th>PROFILE PIC</th>
+    <th>ADDRESS</th>
+    <th>COUNTRY</th>
+    <th>EDIT</th>
+    <th>DELETE</th>
+</tr>
+<?php
+while($row=mysqli_fetch_assoc($res))
+
+{
+?>
+<tr>
+<td><?php echo $row['id']; ?></td>
+<td><?php echo $row['name']; ?></td>
+<td><?php echo $row['age']; ?></td>
+<td><?php echo $row['experience']; ?></td>
+<td><?php echo $row['department']; ?></td>
+<td><?php echo $row['joindate']; ?></td>
+<td><img src="Uploads/<?php  echo $row['image'];?>" width="80" height="80"></td>
+<td><?php echo $row['location']; ?></td>
+<td class="onlciks"><?php echo $row['country']; ?></td>
+<td ><button type="button"data-toggle="modal" data-target="#myModal">Edit</button></td>
+<th><a href="delete.php?id=<?php echo $row['id']; ?>" class="btn">Delete</a></th>
+</tr>
+<?php } ?>
+</table>
+<script>
+    $('.onlciks').click(function(){        
+        var data = $(this).html();
+        alert(data);
+	});
+</script>
+</body>
+</html>
+<?php
+}
+else
+{
+    echo "<h1>No Record Found</h1>";
+}
+mysqli_close($conn);
+?>
+<--------------------------------------------------------show .php   with model---------------------------------------------------------------------------->
+   
+
+
+   
+
+
+
+
+
+
+<?php
+include_once 'db.php';
+$result = mysqli_query($conn,"SELECT * FROM users");
+?>
+<?php
+if (mysqli_num_rows($result) > 0) {
+?>
+<table class='table table-bordered table-striped'>
+<tr>
+<td>Name</td>
+<td>Email id</td>
+<td>Mobile</td>
+</tr>
+<?php
+$i=0;
+while($row = mysqli_fetch_array($result)) {
+?>
+<tr>
+<td><?php echo $row["name"]; ?></td>
+<td><?php echo $row["email"]; ?></td>
+<td><?php echo $row["mobile"]; ?></td>
+</tr>
+<?php
+$i++;
+}
+?>
+</table>
+<?php
+}
+else{
+echo "No result found";
+}
+?> 
+
+<table id="datatable">  
+            <thead>  
+                <tr>  
+                    <th >Sr. No.</th>
+                    <th>Name</th>
+                    <th>AGE</th>
+                    <th>EXPERIENCE</th>
+                    <th>DEPARTMENT</th>
+                    <th>JOINING DATE</th>
+                    <th>PROFILE PIC</th>
+                    <th>ADDRESS</th>
+                    <th>COUNTRY</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                </tr>  
+            </thead>  
+            <tbody>  
+  
+            </tbody>  
+        </table> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<---------------------------------------gjhrwe------------------------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2>Click to Open Edit Page</h2>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModalxzvbxc">Edit</button>
+  <div class="modal fade" id="myModalxzvbxc">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+        <h2>Update Page</h2>
+        </div>
+        <div class="container-fluid">
+                <form action="" id="simpleform" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        Name :<br>
+                        <input type="text" name="name" minlength="8">
+                        <input type="hidden" name="id">
+                        <input type="hidden" name="image">
+                        </div>
+                        <div class="col-sm-6">
+                        Age :<br>
+                        <input type="number" name="age" min="18">
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            Profile Pic : <br>
+                            <input type="file" name="pic">
+                        </div>
+                        <div class="col-sm-6">
+                            Experience :<br>
+                            <input type="number" name="experience" min="1" >
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="lang">Department</label>
+                            <select name="department"  id="lang" value="<?php echo $department; ?>">
+                                <option value="COFOUNDER">COFOUNDER</option>
+                                <option value="HR">HR</option>
+                                <option value="DEVELOPER">DEVELOPER</option>
+                                <option value="TESTER">TESTER</option>
+                                <option value="DESINER">DESINER</option>
+                                <option value="PHP DEVELOPER">PHP DEVELOPER</option>
+                                <option value="WEB DEVELOPER">WEB DEVELOPER</option>
+                            </select><br><br>
+                        </div>
+                        <div class="col-sm-6">
+                            Joining Date : <br>
+                            <input type="date" name="jdate" >
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            Address : <br>
+                            <textarea name="address" id="add" ></textarea>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="lang">Country</label>
+                            <select name="country" id="lang" >
+                                <option value="INDIA">INDIA</option>
+                                <option value="NEPAL">NEPAL</option>
+                                <option value="WESTINDES">WESINDIES</option>
+                                <option value="PAKISTAN">PAKISTAN</option>
+                                <option value="CHINA">CHINA</option>
+                                <option value="BHUTAN">BHUTAN</option>
+                                <option value="THAILAND">THAILAND</option>
+                            </select>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <input type="submit" value="Update" name="update">
+                        </div>
+                    </div>
+                </form> 
+                <br>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
